@@ -1,6 +1,4 @@
 import yfinance as yf
-import numpy as np
-import pandas as pd
 from datetime import date, timedelta
 
 # this stores the tickers from /data/tickers.txt as a list
