@@ -29,6 +29,16 @@ def get_prices(ticker):
 @app.route("/api/run_pipeline")
 def run_pipeline():
     print("Executing run_pipeline...")
+    connection = duckdb.connect('../data/stocks.db')
+    try:
+        tickers = read_tickers(tickers)
+        downloaded_data = download_data(tickers)
+        cleaned_data = transform_data(downloaded_data)
+        create_table(connection)
+        upsert_data(connection, cleaned_data)
+        print("Finished executing pipeline...")
+    except Exception as e:
+        print("Something went wrong while trying to execute the pipeline...", e)
 
         
 
