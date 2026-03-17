@@ -1,7 +1,4 @@
 import pandas as pd
-import numpy as np
-import duckdb
-from extraction import read_tickers, download_data
 
 def transform_data(data):
     if data:
