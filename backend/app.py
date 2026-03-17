@@ -1,10 +1,14 @@
-from flask import Flask, jsonify, request 
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 import duckdb
 from extraction import read_tickers, download_data
+from transform import transform_data
 from load import create_table, upsert_data
 
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:5173"])
+
 
 @app.route("/api/prices/<ticker>")
 def get_prices(ticker):
