@@ -4,11 +4,15 @@ import duckdb
 from extraction import read_tickers, download_data
 from transform import transform_data
 from load import create_table, upsert_data
+import pandas as pd
 
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 
+@app.route("/")
+def home():
+    return "<h1>Homepage</h1>"
 
 @app.route("/api/prices/<ticker>")
 def get_prices(ticker):
@@ -30,15 +34,19 @@ def get_prices(ticker):
 def run_pipeline():
     print("Executing run_pipeline...")
     connection = duckdb.connect('../data/stocks.db')
+    tickers = []
     try:
-        tickers = read_tickers(tickers)
+        read_tickers(tickers)
         downloaded_data = download_data(tickers)
         cleaned_data = transform_data(downloaded_data)
         create_table(connection)
         upsert_data(connection, cleaned_data)
         print("Finished executing pipeline...")
+        jsonified_data = cleaned_data.to_json
+        return jsonify({"status": "success", "message": str(jsonified_data)})
     except Exception as e:
         print("Something went wrong while trying to execute the pipeline...", e)
+        return jsonify({"status": "error", "message": str(e)})
 
         
 
