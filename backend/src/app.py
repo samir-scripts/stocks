@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
 import duckdb
 from extraction import read_tickers, download_data
@@ -13,6 +13,11 @@ CORS(app, origins=["http://localhost:5173"])
 @app.route("/")
 def home():
     return "<h1>Homepage</h1>"
+
+
+'''
+Microservice simply returns ticker data
+'''
 
 @app.route("/api/prices/<ticker>")
 def get_prices(ticker):
@@ -29,6 +34,24 @@ def get_prices(ticker):
     else:
         print("Connection is empty")
 
+@app.route("/api/get_last_7_days/<ticker>")
+def get_last_7_days(ticker):
+
+    print(f"Executing get_last_7_days")
+    connection = duckdb.connect('../data/stocks.db')
+    if connection:
+        try:
+            print(f"Getting last 7 days from {ticker}")
+        except Exception as e:
+            print(f"Something went wrong while trying to fetch data for {ticker}")
+            return jsonify({"status": "error", "message": str(e)})
+
+
+
+
+'''
+This should likely be only ran once
+'''
 
 @app.route("/api/run_pipeline")
 def run_pipeline():

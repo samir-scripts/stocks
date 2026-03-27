@@ -1,10 +1,12 @@
 import yfinance as yf
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
+import pyarrow
+import os
 
 # this stores the tickers from /data/tickers.txt as a list
 def read_tickers(tickers):
     try:
-        with open("../data/tickers.txt", "r") as file:
+        with open("tickers.txt", "r") as file:
             for line in file:
                 cleaned_line = line.strip().upper()
                 if cleaned_line:
@@ -23,10 +25,26 @@ def download_data(tickers):
         end_date = date.today()
         start_date = end_date - timedelta(days=30)
         try:
-            return yf.download(tickers, start=start_date, end=end_date)
+            data = yf.download(tickers, start=start_date, end=end_date) 
+            data['extracted_at'] = datetime.now()
+            return data
         except Exception as e:
             print(f"Something went wrong while trying to download data from yfinance: ", e)
     else:
         print("no data in tickers!")
+
+# output directory should be data/raw
+def save_data(data):
+    print("saving data as a parquet file...")
+    try:
+        OUTPUT_DIRECTORY = f"../data/raw/"
+        filename = f"{OUTPUT_DIRECTORY}/tickerdata_raw.parquet"
+        data.to_parquet(filename, index=True)
+        print(f"Saved data to {OUTPUT_DIRECTORY}")
+    except Exception as e:
+        print(f"Something went wrong while trying to save data as a parquet file to {OUTPUT_DIRECTORY}...", e)
+
+
+
 
 
