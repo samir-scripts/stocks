@@ -10,7 +10,7 @@ import pandas as pd
 
 def load_data_to_postgres(engine):
     print("Running to load_data_to_postgres")
-    path_to_file = "backend/data/raw/*.parquet"
+    path_to_file = "../../backend/data/raw/*.parquet"
     files = glob.glob(path_to_file)
 
     if not files:
@@ -34,13 +34,18 @@ def load_data_to_postgres(engine):
 
 def main():
     load_dotenv()
-    db_url = os.getenv("DATABASE_URL")
-    engine = create_engine(db_url)
-    print(f"Successfully connected to {db_url}!")
+
+    try:
+        db_url = os.getenv("DATABASE_URL")
+        engine = create_engine(db_url)
+        print(f"Successfully connected to {db_url}!")
+    except Exception as e:
+        print(f"Something went wrong while trying to connnect to the database: {e}")
+
 
     load_data_to_postgres(engine)
     
 
     print("Finished running main.")
 
-
+main()
