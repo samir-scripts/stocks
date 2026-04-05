@@ -37,6 +37,10 @@ def main():
     db_url = os.getenv("DATABASE_URL")
     engine = create_engine(db_url)
     print(f"Successfully connected to {db_url}!")
+
+    load_data_to_postgres(engine)
     
 
     print("Finished running main.")
+
+
