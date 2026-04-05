@@ -4,7 +4,8 @@ def main():
     try:
         tickers = []
         read_tickers(tickers)
-        data = download_data(tickers)   
+        data = download_data(tickers)
+        print(data)  
         save_data(data)
     except Exception as e:
         print(f"Something went wrong while trying to execute the test:", e)

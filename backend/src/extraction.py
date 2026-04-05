@@ -2,6 +2,7 @@ import yfinance as yf
 from datetime import date, timedelta, datetime
 import pyarrow
 import os
+import pandas as pd
 
 '''
 - Samir Katakamsetty
@@ -47,7 +48,10 @@ def save_data(data):
     try:
         OUTPUT_DIRECTORY = f"../data/raw/"
         filename = f"{OUTPUT_DIRECTORY}/tickerdata_raw.parquet"
-        data.to_parquet(filename, index=True)
+        df = pd.DataFrame(data)
+        df_long = df.stack(level=1).reset_index()
+        df_stacked = df_long.rename(columns={"level_1": 'ticker', "Date": 'price_date'})
+        df_stacked.to_parquet(filename, index=True)
         print(f"Saved data to {OUTPUT_DIRECTORY}")
     except Exception as e:
         print(f"Something went wrong while trying to save data as a parquet file to {OUTPUT_DIRECTORY}...", e)
