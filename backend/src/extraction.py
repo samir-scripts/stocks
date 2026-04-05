@@ -3,6 +3,14 @@ from datetime import date, timedelta, datetime
 import pyarrow
 import os
 
+'''
+- Samir Katakamsetty
+- Downloads data from yfinance in a certain range (date)
+- Puts downloaded data into a parquet file
+
+'''
+
+
 # this stores the tickers from /data/tickers.txt as a list
 def read_tickers(tickers):
     try:
