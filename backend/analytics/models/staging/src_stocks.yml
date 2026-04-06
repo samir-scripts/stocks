@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: public # This is the 'name' used in {{ source('public', ...) }}
+    database: stocks_db
+    schema: public
+    tables:
+      - name: raw_stocks # This must match the table name in DBeaver
