@@ -1,8 +1,8 @@
 type: postgres
 host: localhost
-name: postgres
-port: 5432
 user: postgres
 password: yeezus9090
+name: postgres
+port: 5432
 database: stocks_db
-ssl: false
+schema: public
