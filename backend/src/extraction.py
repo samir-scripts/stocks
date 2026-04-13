@@ -1,5 +1,7 @@
 import yfinance as yf
-from datetime import date, timedelta, datetime
+from datetime import date 
+from datetime import timedelta
+from datetime import datetime as dt
 import pyarrow
 import os
 import pandas as pd
@@ -34,8 +36,8 @@ def download_data(tickers):
         end_date = date.today()
         start_date = end_date - timedelta(days=30)
         try:
+            data = pd.DataFrame()
             data = yf.download(tickers, start=start_date, end=end_date) 
-            data['extracted_at'] = datetime.now()
             return data
         except Exception as e:
             print(f"Something went wrong while trying to download data from yfinance: ", e)
@@ -50,7 +52,8 @@ def save_data(data):
         filename = f"{OUTPUT_DIRECTORY}/tickerdata_raw.parquet"
         df = pd.DataFrame(data)
         df_long = df.stack(level=1).reset_index()
-        df_stacked = df_long.rename(columns={"level_1": 'ticker', "Date": 'price_date'})
+        df_cleaned = df_long.dropna(subset=["Close"])
+        df_stacked = df_cleaned.rename(columns={"level_1": 'ticker', "Date": 'price_date'})
         df_stacked.to_parquet(filename, index=True)
         print(f"Saved data to {OUTPUT_DIRECTORY}")
     except Exception as e:

@@ -1,1 +1,1 @@
-select * from stock_performance
+SELECT * FROM public.stock_performance

@@ -1,8 +1,11 @@
+# This file was automatically generated
 type: postgres
-host: localhost
-user: postgres
-password: yeezus9090
 name: postgres
-port: 5432
-database: stocks_db
-schema: public
+# Advanced Options, you probably don't want to change this
+buildOptions:
+  batchSize: 1000000
+options:
+  database: postgres
+  host: localhost
+  port: 5432
+  schema: public

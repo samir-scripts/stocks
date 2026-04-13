@@ -9,10 +9,10 @@ renamed AS (
         "High"::float as high_price,
         "Low"::float as low_price,
         "Close"::float as close_price, 
-        "Volume"::bigint as volume,
-        "extracted_at"::timestamp as extracted_at
+        "Volume"::bigint as volume
     FROM source
     WHERE "Ticker" IS NOT NULL
+        AND "Close" IS NOT NULL
 )
 
 SELECT * FROM renamed
