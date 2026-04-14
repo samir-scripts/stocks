@@ -19,5 +19,5 @@ calculations AS (
 
 )
 
-SELECT * FROM calculations
+SELECT * FROM calculations WHERE "daily_return_pct" IS NOT NULL
 

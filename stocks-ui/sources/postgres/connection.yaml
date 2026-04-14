@@ -5,7 +5,7 @@ name: postgres
 buildOptions:
   batchSize: 1000000
 options:
-  database: postgres
+  database: stocks_db
   host: localhost
   port: 5432
   schema: public
