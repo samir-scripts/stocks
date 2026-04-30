@@ -7,7 +7,7 @@ title: Big Tech Stock Performance
         ticker,
         price_date,
         close_price
-    from stock_data
+    from postgres.close_price
     where price_date >= current_date - interval '50 days'
     order by ticker, price_date desc
 

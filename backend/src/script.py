@@ -13,11 +13,5 @@ def run_pipeline():
     load_main()
     print("Data pipeline execution finished.")
 
-# Schedule the pipeline to run daily at midnight
-schedule.every().day.at("00:00").do(run_pipeline)
-print("Pipeline scheduled to run daily at midnight (00:00).")
+run_pipeline()
 
-# Run the scheduler loop
-while True:
-    schedule.run_pending()
-    time.sleep(1)
