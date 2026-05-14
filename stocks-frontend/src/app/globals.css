@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cyanotype Palette */
+  --color-primary-blue: #3B82F6;
+  --color-blueprint-blue: #4A90E2;
+  --color-paper-white: #F8FAFC;
+  --color-academic-gray: #1E293B;
+
+  /* Typography */
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+:root {
+  --background: #F8FAFC; /* Paper White */
+  --foreground: #1E293B; /* Academic Gray */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Chart Container Styles */
+.chart-container {
+  border: 1px solid #3B82F6;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}

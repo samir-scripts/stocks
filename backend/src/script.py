@@ -1,7 +1,5 @@
 from extraction import read_tickers, download_data, save_data
 from load import main as load_main
-import schedule
-import time
 
 def run_pipeline():
     """Executes the data pipeline: fetching data, saving, and loading."""
@@ -13,5 +11,5 @@ def run_pipeline():
     load_main()
     print("Data pipeline execution finished.")
 
-run_pipeline()
-
+if __name__ == "__main__":
+    run_pipeline()

@@ -48,4 +48,5 @@ def main():
 
     print("Finished running main.")
 
-main()
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,36 @@
+------------------------------------------
+Job started at: Thu May 14 16:57:37 EDT 2026
+Running data pipeline...
+[                       0%                       ][************          25%                       ]  2 of 8 completed[******************    38%                       ]  3 of 8 completed[**********************50%                       ]  4 of 8 completed[**********************62%*****                  ]  5 of 8 completed[**********************75%***********            ]  6 of 8 completed[**********************88%*****************      ]  7 of 8 completed[*********************100%***********************]  8 of 8 completed
+Starting data pipeline execution...
+['NVDA', 'GOOGL', 'AAPL', 'IBM', 'MSFT', 'AMD', 'AMZN', 'META']
+downloading data from yfinance...
+saving data as a parquet file...
+Saved data to ../data/raw/
+Successfully connected to postgresql://postgres:yeezus9090@localhost:5432/stocks_db!
+Running to load_data_to_postgres
+1 files found, starting load process...
+Finished running main.
+Data pipeline execution finished.
+Running dbt...
+[0m20:57:41  Running with dbt=1.11.7
+[0m20:57:42  Registered adapter: postgres=1.10.0
+[0m20:57:42  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.analytics.marts
+- models.analytics.example
+[0m20:57:42  Found 2 models, 1 source, 465 macros
+[0m20:57:42  
+[0m20:57:42  Concurrency: 1 threads (target='dev')
+[0m20:57:42  
+[0m20:57:42  1 of 2 START sql view model public.stg_stocks .................................. [RUN]
+[0m20:57:42  1 of 2 OK created sql view model public.stg_stocks ............................. [[32mCREATE VIEW[0m in 0.05s]
+[0m20:57:42  2 of 2 START sql view model public.stock_performance ........................... [RUN]
+[0m20:57:42  2 of 2 OK created sql view model public.stock_performance ...................... [[32mCREATE VIEW[0m in 0.05s]
+[0m20:57:42  
+[0m20:57:42  Finished running 2 view models in 0 hours 0 minutes and 0.23 seconds (0.23s).
+[0m20:57:42  
+[0m20:57:42  [32mCompleted successfully[0m
+[0m20:57:42  
+[0m20:57:42  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+Job finished at: Thu May 14 16:57:42 EDT 2026
