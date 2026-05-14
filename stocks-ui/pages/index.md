@@ -12,7 +12,7 @@ title: Big Tech Stock Performance
     name='selected_ticker' 
     data={ticker_selection} 
     value=ticker 
-    title="Select a Ticker"
+    title=""
     defaultValue='MSFT' 
 />
 
@@ -28,9 +28,9 @@ title: Big Tech Stock Performance
 
 ```
 
-<LineChart 
-    data={s_performance} 
-    x=price_date
-    y=close_price 
-    series=ticker 
+<LineChart
+data={s_performance}
+x=price_date
+y=close_price
+series=ticker
 />
