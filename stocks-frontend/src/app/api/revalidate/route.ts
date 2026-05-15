@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
 
   try {
     // Purge the cache tag 'stock-data'
-    revalidateTag('stock-data');
+    revalidateTag('stock-data', {});
     console.log('Revalidated stock-data tag');
     return NextResponse.json({ revalidated: true, now: Date.now() });
   } catch (err) {
