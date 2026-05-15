@@ -5,6 +5,7 @@ import os
 from extraction import read_tickers, download_data
 from transform import transform_data
 from load import load_data_to_postgres
+from script import trigger_revalidation
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -52,6 +53,8 @@ def run_pipeline():
         
         # This triggers the existing load logic
         load_data_to_postgres(engine)
+        
+        trigger_revalidation()
         
         return jsonify({"status": "success", "message": "Pipeline triggered and loaded to Postgres"})
     except Exception as e:

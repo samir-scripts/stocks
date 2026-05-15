@@ -20,6 +20,8 @@ services:
       FLASK_ENV: development
       DBT_PROFILES_DIR: /app
       DB_HOST: db
+      FRONTEND_URL: http://frontend:3000
+      REVALIDATION_SECRET: ${REVALIDATION_SECRET:-super-secret-token}
     ports:
       - "5000:5000"
     volumes:
@@ -33,6 +35,7 @@ services:
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-stocks}
+      REVALIDATION_SECRET: ${REVALIDATION_SECRET:-super-secret-token}
     ports:
       - "3000:3000"
     depends_on:
