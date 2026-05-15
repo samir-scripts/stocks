@@ -1,26 +1,30 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import duckdb
+import os
 from extraction import read_tickers, download_data
 from transform import transform_data
-from load import create_table, upsert_data
+from load import load_data_to_postgres
+from sqlalchemy import create_engine
 import pandas as pd
 
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+# Allow both local dev and Docker frontend
+CORS(app, origins=["http://localhost:3000", "http://localhost:5173"])
+
+def get_db_engine():
+    db_url = os.getenv("DATABASE_URL")
+    return create_engine(db_url)
 
 @app.route("/")
 def home():
-    return "<h1>Homepage</h1>"
-
-
-'''
-Microservice simply returns ticker data
-'''
+    return "<h1>Stock API Homepage</h1>"
 
 @app.route("/api/prices/<ticker>")
 def get_prices(ticker):
+    # Note: This still uses DuckDB as per original code, 
+    # but could be migrated to Postgres for consistency.
     print("Executing get_prices...")
     connection = duckdb.connect('../data/stocks.db')
     if connection:
@@ -31,45 +35,28 @@ def get_prices(ticker):
             return jsonify(data)
         except Exception as e:
             print(f"Something went wrong while trying to fetch data for {ticker}: {e}")
+            return jsonify({"error": str(e)}), 500
     else:
-        print("Connection is empty")
-
-@app.route("/api/get_last_7_days/<ticker>")
-def get_last_7_days(ticker):
-
-    print(f"Executing get_last_7_days")
-    connection = duckdb.connect('../data/stocks.db')
-    if connection:
-        try:
-            print(f"Getting last 7 days from {ticker}")
-        except Exception as e:
-            print(f"Something went wrong while trying to fetch data for {ticker}")
-            return jsonify({"status": "error", "message": str(e)})
-
-
-
-
-'''
-This should likely be only ran once
-'''
+        return jsonify({"error": "Connection is empty"}), 500
 
 @app.route("/api/run_pipeline")
 def run_pipeline():
-    print("Executing run_pipeline...")
-    connection = duckdb.connect('../data/stocks.db')
+    print("Executing run_pipeline (PostgreSQL)...")
     tickers = []
     try:
         read_tickers(tickers)
         downloaded_data = download_data(tickers)
-        cleaned_data = transform_data(downloaded_data)
-        create_table(connection)
-        upsert_data(connection, cleaned_data)
-        print("Finished executing pipeline...")
-        jsonified_data = cleaned_data.to_json
-        return jsonify({"status": "success", "message": str(jsonified_data)})
+        # In a real scenario, you'd save to parquet then load, 
+        # or load directly. For now, we'll follow the script logic.
+        engine = get_db_engine()
+        
+        # This triggers the existing load logic
+        load_data_to_postgres(engine)
+        
+        return jsonify({"status": "success", "message": "Pipeline triggered and loaded to Postgres"})
     except Exception as e:
         print("Something went wrong while trying to execute the pipeline...", e)
-        return jsonify({"status": "error", "message": str(e)})
+        return jsonify({"status": "error", "message": str(e)}), 500
 
         
 

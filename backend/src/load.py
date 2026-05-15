@@ -10,11 +10,18 @@ import pandas as pd
 
 def load_data_to_postgres(engine):
     print("Running to load_data_to_postgres")
-    path_to_file = "../../backend/data/raw/*.parquet"
+    # Inside Docker, we use /app as the root. 
+    # Relative path ../../backend/data/raw/ wouldn't work correctly.
+    path_to_file = "/app/data/raw/*.parquet"
     files = glob.glob(path_to_file)
 
     if not files:
-        print(f"No files found in {path_to_file}")
+        print(f"No files found in {path_to_file}. Trying relative path...")
+        path_to_file = "data/raw/*.parquet"
+        files = glob.glob(path_to_file)
+
+    if not files:
+        print("Final check: No parquet files found for loading.")
         return
     
     print(f"{len(files)} files found, starting load process...")

@@ -136,32 +136,8 @@ export default function Home() {
 
         {/* Footer Info */}
         <footer className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-academic-gray/10">
-          <div className="space-y-2">
-            <h3 className="text-xs font-bold uppercase text-primary-blue">
-              Documentation
-            </h3>
-            <p className="text-sm text-academic-gray/70 leading-relaxed">
-              Charts display daily closing prices with a superimposed 7-day
-              simple moving average (dashed). Calculations derived from the
-              `stock_performance` mart.
-            </p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-xs font-bold uppercase text-primary-blue">
-              Data Source
-            </h3>
-            <p className="text-sm text-academic-gray/70 leading-relaxed">
-              PostgreSQL / dbt-Core Pipeline. Refreshed nightly via CRON.
-            </p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-xs font-bold uppercase text-primary-blue">
-              Technical Specs
-            </h3>
-            <p className="text-sm text-academic-gray/70">
-              Next.js 15 / Tailwind v4 / Lightweight Charts
-            </p>
-          </div>
+          <div className="space-y-2"></div>
+          <div className="space-y-2"></div>
         </footer>
       </div>
     </main>

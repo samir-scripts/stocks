@@ -1,15 +1,26 @@
+FROM python:3.11-slim
 
-FROM node:24.12.0 AS frontend-build
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm install
-COPY frontend/ ./
-RUN npm run build
+# Install system dependencies for postgres and build tools
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /app
 
-FROM python:3.13.3
-WORKDIR /stocks
+# Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy backend code
 COPY . .
-CMD ["python", "backend/app.py"]
+
+# Environment variables
+ENV FLASK_APP=src/app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV PYTHONPATH=/app/src
+
+EXPOSE 5000
+
+# By default, run the API server
+CMD ["flask", "run"]

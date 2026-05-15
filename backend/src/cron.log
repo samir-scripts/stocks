@@ -34,3 +34,189 @@ There are 2 unused configuration paths:
 [0m20:57:42  
 [0m20:57:42  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
 Job finished at: Thu May 14 16:57:42 EDT 2026
+------------------------------------------
+Job started at: Fri May 15 05:31:09 UTC 2026
+Running data pipeline...
+[                       0%                       ][                       0%                       ][******************    38%                       ]  3 of 8 completed[**********************50%                       ]  4 of 8 completed[**********************62%*****                  ]  5 of 8 completed[**********************75%***********            ]  6 of 8 completed[**********************88%*****************      ]  7 of 8 completed[*********************100%***********************]  8 of 8 completed
+Starting data pipeline execution...
+['NVDA', 'GOOGL', 'AAPL', 'IBM', 'MSFT', 'AMD', 'AMZN', 'META']
+downloading data from yfinance...
+saving data as a parquet file...
+Saved data to ../data/raw/
+Successfully connected to postgresql://postgres:postgres@db:5432/stocks!
+Running to load_data_to_postgres
+1 files found, starting load process...
+Finished running main.
+Data pipeline execution finished.
+Running dbt...
+[0m05:31:11  Running with dbt=1.11.10
+[0m05:31:11  Registered adapter: postgres=1.10.0
+[0m05:31:11  Unable to do partial parsing because of a version mismatch
+[0m05:31:12  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.analytics.example
+- models.analytics.marts
+[0m05:31:12  Found 2 models, 1 source, 467 macros
+[0m05:31:12  
+[0m05:31:12  Concurrency: 1 threads (target='dev')
+[0m05:31:12  
+[0m05:31:12  1 of 2 START sql view model public.stg_stocks .................................. [RUN]
+[0m05:31:12  1 of 2 OK created sql view model public.stg_stocks ............................. [[32mCREATE VIEW[0m in 0.04s]
+[0m05:31:12  2 of 2 START sql view model public.stock_performance ........................... [RUN]
+[0m05:31:12  2 of 2 OK created sql view model public.stock_performance ...................... [[32mCREATE VIEW[0m in 0.01s]
+[0m05:31:12  
+[0m05:31:12  Finished running 2 view models in 0 hours 0 minutes and 0.11 seconds (0.11s).
+[0m05:31:12  
+[0m05:31:12  [32mCompleted successfully[0m
+[0m05:31:12  
+[0m05:31:12  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+Job finished at: Fri May 15 05:31:12 UTC 2026
+------------------------------------------
+Job started at: Fri May 15 05:31:15 UTC 2026
+Running data pipeline...
+[                       0%                       ][                       0%                       ][******************    38%                       ]  3 of 8 completed[**********************50%                       ]  4 of 8 completed[**********************62%*****                  ]  5 of 8 completed[**********************75%***********            ]  6 of 8 completed[**********************88%*****************      ]  7 of 8 completed[*********************100%***********************]  8 of 8 completed
+Starting data pipeline execution...
+['NVDA', 'GOOGL', 'AAPL', 'IBM', 'MSFT', 'AMD', 'AMZN', 'META']
+downloading data from yfinance...
+saving data as a parquet file...
+Saved data to ../data/raw/
+Successfully connected to postgresql://postgres:postgres@db:5432/stocks!
+Running to load_data_to_postgres
+1 files found, starting load process...
+Finished running main.
+Data pipeline execution finished.
+Running dbt...
+[0m05:31:16  Running with dbt=1.11.10
+[0m05:31:16  Registered adapter: postgres=1.10.0
+[0m05:31:17  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.analytics.marts
+- models.analytics.example
+[0m05:31:17  Found 2 models, 1 source, 467 macros
+[0m05:31:17  
+[0m05:31:17  Concurrency: 1 threads (target='dev')
+[0m05:31:17  
+[0m05:31:17  1 of 2 START sql view model public.stg_stocks .................................. [RUN]
+[0m05:31:17  1 of 2 OK created sql view model public.stg_stocks ............................. [[32mCREATE VIEW[0m in 0.07s]
+[0m05:31:17  2 of 2 START sql view model public.stock_performance ........................... [RUN]
+[0m05:31:17  2 of 2 OK created sql view model public.stock_performance ...................... [[32mCREATE VIEW[0m in 0.04s]
+[0m05:31:17  
+[0m05:31:17  Finished running 2 view models in 0 hours 0 minutes and 0.18 seconds (0.18s).
+[0m05:31:17  
+[0m05:31:17  [32mCompleted successfully[0m
+[0m05:31:17  
+[0m05:31:17  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+Job finished at: Fri May 15 05:31:17 UTC 2026
+------------------------------------------
+Job started at: Fri May 15 05:34:22 UTC 2026
+Running data pipeline...
+[                       0%                       ][************          25%                       ]  2 of 8 completed[******************    38%                       ]  3 of 8 completed[**********************50%                       ]  4 of 8 completed[**********************62%*****                  ]  5 of 8 completed[**********************75%***********            ]  6 of 8 completed[**********************88%*****************      ]  7 of 8 completed[*********************100%***********************]  8 of 8 completed
+Starting data pipeline execution...
+['NVDA', 'GOOGL', 'AAPL', 'IBM', 'MSFT', 'AMD', 'AMZN', 'META']
+downloading data from yfinance...
+saving data as a parquet file...
+Saved data to ../data/raw/
+Successfully connected to postgresql://postgres:postgres@db:5432/stocks!
+Running to load_data_to_postgres
+1 files found, starting load process...
+Finished running main.
+Data pipeline execution finished.
+Running dbt...
+[0m05:34:24  Running with dbt=1.11.10
+[0m05:34:24  Registered adapter: postgres=1.10.0
+[0m05:34:24  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.analytics.example
+- models.analytics.marts
+[0m05:34:24  Encountered an error:
+Field "depends_on" of type MacroDependsOn in Macro has invalid value {'macros': []}
+[0m05:34:24  Traceback (most recent call last):
+  File "<string>", line 34, in __mashumaro_from_dict__
+  File "<string>", line 17, in __mashumaro_from_dict__
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 182, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 276, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 321, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 391, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 368, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 407, in wrapper
+    setup_manifest(ctx, write=write, write_perf_info=write_perf_info)
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 434, in setup_manifest
+    ctx.obj["manifest"] = parse_manifest(
+                          ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/parser/manifest.py", line 2264, in parse_manifest
+    write_manifest(manifest, runtime_config.project_target_path)
+  File "/usr/local/lib/python3.11/site-packages/dbt/parser/manifest.py", line 2239, in write_manifest
+    manifest.write(path)
+  File "/usr/local/lib/python3.11/site-packages/dbt/contracts/graph/manifest.py", line 1287, in write
+    writable = self.writable_manifest()
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/contracts/graph/manifest.py", line 1269, in writable_manifest
+    macros=self._map_nodes_to_map_resources(self.macros),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/contracts/graph/manifest.py", line 1229, in _map_nodes_to_map_resources
+    return {node_id: node.to_resource() for node_id, node in nodes_map.items()}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/contracts/graph/manifest.py", line 1229, in <dictcomp>
+    return {node_id: node.to_resource() for node_id, node in nodes_map.items()}
+                     ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/contracts/graph/nodes.py", line 181, in to_resource
+    return self.resource_class().from_dict(self.to_dict())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 36, in __mashumaro_from_dict__
+mashumaro.exceptions.InvalidFieldValue: Field "depends_on" of type MacroDependsOn in Macro has invalid value {'macros': []}
+
+Job finished at: Fri May 15 05:34:25 UTC 2026
+------------------------------------------
+Job started at: Fri May 15 05:34:30 UTC 2026
+Running data pipeline...
+[                       0%                       ][************          25%                       ]  2 of 8 completed[******************    38%                       ]  3 of 8 completed[**********************50%                       ]  4 of 8 completed[**********************62%*****                  ]  5 of 8 completed[**********************75%***********            ]  6 of 8 completed[**********************88%*****************      ]  7 of 8 completed[*********************100%***********************]  8 of 8 completed
+Starting data pipeline execution...
+['NVDA', 'GOOGL', 'AAPL', 'IBM', 'MSFT', 'AMD', 'AMZN', 'META']
+downloading data from yfinance...
+saving data as a parquet file...
+Saved data to ../data/raw/
+Successfully connected to postgresql://postgres:postgres@db:5432/stocks!
+Running to load_data_to_postgres
+1 files found, starting load process...
+Finished running main.
+Data pipeline execution finished.
+Running dbt...
+[0m05:34:32  Running with dbt=1.11.10
+[0m05:34:32  Registered adapter: postgres=1.10.0
+[0m05:34:32  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.analytics.marts
+- models.analytics.example
+[0m05:34:32  Found 2 models, 1 source, 467 macros
+[0m05:34:32  
+[0m05:34:32  Concurrency: 1 threads (target='dev')
+[0m05:34:32  
+[0m05:34:32  1 of 2 START sql view model public.stg_stocks .................................. [RUN]
+[0m05:34:32  1 of 2 OK created sql view model public.stg_stocks ............................. [[32mCREATE VIEW[0m in 0.04s]
+[0m05:34:32  2 of 2 START sql view model public.stock_performance ........................... [RUN]
+[0m05:34:32  2 of 2 OK created sql view model public.stock_performance ...................... [[32mCREATE VIEW[0m in 0.01s]
+[0m05:34:32  
+[0m05:34:32  Finished running 2 view models in 0 hours 0 minutes and 0.12 seconds (0.12s).
+[0m05:34:32  
+[0m05:34:32  [32mCompleted successfully[0m
+[0m05:34:32  
+[0m05:34:32  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+Job finished at: Fri May 15 05:34:32 UTC 2026
