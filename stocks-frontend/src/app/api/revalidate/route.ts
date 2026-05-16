@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     revalidateTag('stock-data', {});
     console.log('Revalidated stock-data tag');
     return NextResponse.json({ revalidated: true, now: Date.now() });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ message: 'Error revalidating' }, { status: 500 });
   }
 }

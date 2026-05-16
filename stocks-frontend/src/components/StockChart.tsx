@@ -1,7 +1,8 @@
 'use client';
 
-import { createChart, ColorType, ISeriesApi, LineSeries } from 'lightweight-charts';
-import React, { useEffect, useRef } from 'react';
+import { createChart, ColorType, ISeriesApi, LineSeries, IChartApi } from 'lightweight-charts';
+import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 interface ChartProps {
   data: { time: string; value: number }[];
@@ -9,23 +10,34 @@ interface ChartProps {
 }
 
 export const StockChart: React.FC<ChartProps> = ({ data, movingAvgData }) => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<IChartApi | null>(null);
   const lineSeriesRef = useRef<ISeriesApi<"Line"> | null>(null);
   const movingAvgSeriesRef = useRef<ISeriesApi<"Line"> | null>(null);
 
   useEffect(() => {
-    if (!chartContainerRef.current) return;
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || !chartContainerRef.current) return;
+
+    const isDark = theme === 'dark';
+    const backgroundColor = isDark ? '#121212' : '#FFFFFF';
+    const textColor = isDark ? '#F8FAFC' : '#1E293B';
+    const gridColor = isDark ? '#1E293B' : '#F1F5F9';
 
     const chart = createChart(chartContainerRef.current, {
       layout: {
-        background: { type: ColorType.Solid, color: '#FFFFFF' },
-        textColor: '#1E293B', // academic-gray
+        background: { type: ColorType.Solid, color: backgroundColor },
+        textColor: textColor,
         fontFamily: 'var(--font-jetbrains-mono), monospace',
       },
       grid: {
-        vertLines: { color: '#F1F5F9' },
-        horzLines: { color: '#F1F5F9' },
+        vertLines: { color: gridColor },
+        horzLines: { color: gridColor },
       },
       width: chartContainerRef.current.clientWidth,
       height: 400,
@@ -33,7 +45,6 @@ export const StockChart: React.FC<ChartProps> = ({ data, movingAvgData }) => {
 
     chart.timeScale().fitContent();
 
-    // Use v5 unified series creation API: chart.addSeries(LineSeries, options)
     const lineSeries = chart.addSeries(LineSeries, {
       color: '#3B82F6', // primary-blue
       lineWidth: 2,
@@ -63,7 +74,7 @@ export const StockChart: React.FC<ChartProps> = ({ data, movingAvgData }) => {
       window.removeEventListener('resize', handleResize);
       chart.remove();
     };
-  }, []);
+  }, [mounted, theme, movingAvgData]);
 
   useEffect(() => {
     if (lineSeriesRef.current && data.length > 0) {
@@ -75,7 +86,7 @@ export const StockChart: React.FC<ChartProps> = ({ data, movingAvgData }) => {
     if (chartRef.current) {
         chartRef.current.timeScale().fitContent();
     }
-  }, [data, movingAvgData]);
+  }, [data, movingAvgData, theme]);
 
   return <div ref={chartContainerRef} className="w-full chart-container overflow-hidden" />;
 };

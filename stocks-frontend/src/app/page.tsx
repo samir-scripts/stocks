@@ -8,7 +8,7 @@ export default async function Home() {
   const stockData = await getCachedStockData();
 
   return (
-    <main className="min-h-screen p-8 md:p-24 bg-paper-white">
+    <main className="min-h-screen">
       <Dashboard initialData={stockData} />
     </main>
   );
