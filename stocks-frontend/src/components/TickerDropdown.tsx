@@ -25,10 +25,14 @@ export const TickerDropdown: React.FC<TickerDropdownProps> = ({
         id="ticker-select"
         value={selectedTicker}
         onChange={(e) => onTickerChange(e.target.value)}
-        className="bg-background border-2 border-primary-blue px-4 py-2 rounded-sm text-foreground font-mono focus:ring-2 focus:ring-blueprint-blue outline-none cursor-pointer"
+        className="bg-background border-2 border-charcoal-black px-4 py-2 rounded-sm text-foreground font-mono focus:ring-2 focus:ring-blueprint-blue outline-none cursor-pointer"
       >
         {tickers.map((ticker) => (
-          <option key={ticker} value={ticker} className="bg-background text-foreground">
+          <option
+            key={ticker}
+            value={ticker}
+            className="bg-background text-foreground"
+          >
             {ticker}
           </option>
         ))}
