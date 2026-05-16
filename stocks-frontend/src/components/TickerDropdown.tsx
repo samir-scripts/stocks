@@ -1,18 +1,11 @@
 "use client";
 
 import React from "react";
+import { useDashboard } from "./DashboardProvider";
 
-interface TickerDropdownProps {
-  tickers: string[];
-  selectedTicker: string;
-  onTickerChange: (ticker: string) => void;
-}
+export const TickerDropdown: React.FC = () => {
+  const { tickers, selectedTicker, setSelectedTicker } = useDashboard();
 
-export const TickerDropdown: React.FC<TickerDropdownProps> = ({
-  tickers,
-  selectedTicker,
-  onTickerChange,
-}) => {
   return (
     <div className="flex flex-col">
       <label
@@ -24,7 +17,7 @@ export const TickerDropdown: React.FC<TickerDropdownProps> = ({
       <select
         id="ticker-select"
         value={selectedTicker}
-        onChange={(e) => onTickerChange(e.target.value)}
+        onChange={(e) => setSelectedTicker(e.target.value)}
         className="bg-background border-2 border-charcoal-black px-4 py-2 rounded-sm text-foreground font-mono focus:ring-2 focus:ring-blueprint-blue outline-none cursor-pointer"
       >
         {tickers.map((ticker) => (

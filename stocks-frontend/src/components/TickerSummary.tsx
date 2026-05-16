@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-import { PerformanceRecord } from "@/lib/data";
+import { useDashboard } from "./DashboardProvider";
 
-interface TickerSummaryProps {
-  lastRecord: PerformanceRecord | null;
-}
+export const TickerSummary: React.FC = () => {
+  const { lastRecord } = useDashboard();
 
-export const TickerSummary: React.FC<TickerSummaryProps> = ({ lastRecord }) => {
   if (!lastRecord) return null;
 
   return (

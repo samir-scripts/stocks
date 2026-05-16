@@ -2,15 +2,11 @@
 
 import React from "react";
 import { StockChart } from "@/components/StockChart";
-import { PerformanceRecord } from "@/lib/data";
+import { useDashboard } from "./DashboardProvider";
 
-interface DashboardChartSectionProps {
-  data: PerformanceRecord[];
-}
+export const DashboardChartSection: React.FC = () => {
+  const { data } = useDashboard();
 
-export const DashboardChartSection: React.FC<DashboardChartSectionProps> = ({
-  data,
-}) => {
   const chartData = data.map((item) => ({
     time: item.time,
     value: item.value,
