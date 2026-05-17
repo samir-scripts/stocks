@@ -24,9 +24,13 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <span className="text-paper-white font-mono text-xs uppercase font-bold">Light</span>
+        <span className="text-paper-white font-mono text-xs uppercase font-bold">
+          Light
+        </span>
       ) : (
-        <span className="text-academic-gray font-mono text-xs uppercase font-bold">Dark</span>
+        <span className="text-academic-gray font-mono text-xs uppercase font-bold">
+          Dark
+        </span>
       )}
     </button>
   );

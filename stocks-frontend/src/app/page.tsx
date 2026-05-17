@@ -6,7 +6,7 @@ import { TickerSummary } from "@/components/TickerSummary";
 import { DashboardChartSection } from "@/components/DashboardChartSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const stockData = await getCachedStockData();
@@ -16,14 +16,12 @@ export default async function Home() {
       <DashboardProvider initialData={stockData}>
         <div className="max-w-6xl mx-auto space-y-8 p-4 md:p-8">
           {/* Header */}
-          <header className="border-b border-primary-blue pb-4 flex justify-between items-start">
+          <header className="border-b border-charcoal-black pb-4 flex justify-between items-start">
             <div>
               <h1 className="text-4xl font-bold tracking-tighter text-foreground uppercase">
-                .tech_stocks
+                tech.stalks
               </h1>
-              <p className="text-foreground/60 italic">
-                v1.0 (Static Server-Rendered)
-              </p>
+              <p className="text-foreground/60 italic">v1.0</p>
             </div>
             <ThemeToggle />
           </header>
